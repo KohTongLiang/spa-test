@@ -3,14 +3,14 @@ import axios from 'axios';
 
 // import material ui components
 import {
-    Button, Typography, Grid, Container, Fab, IconButton, Table, TableBody, TableCell, TableContainer,
+    Typography, Grid, Container, Fab, IconButton, Table, TableBody, TableCell, TableContainer,
     TableHead, TableRow, Paper
 } from '@material-ui/core';
-import { Edit as EditIcon, Create as CreateIcon, Delete as DeleteIcon } from '@material-ui/icons';
+import { Edit as EditIcon, Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import constants
-import { USER_PAGE_TITLE, USER_PAGE_DESCRIPTION } from '../../Constants/values';
+import { USER_PAGE_TITLE } from '../../Constants/values';
 import { STYLE } from '../../Constants/styles';
 
 import CreateUser from './CreateUser';
@@ -110,7 +110,7 @@ function User(props) {
 
 
             <Fab color="primary" onClick={() => setCreateUserShow(!createUserShow)} className={classes.fab} aria-label="add">
-                <CreateIcon />
+                <AddIcon />
             </Fab>
             <CreateUser show={createUserShow} close={() => setCreateUserShow(!createUserShow)} createUser={createUserHandler} />
             <UpdateUser show={updateUserShow} close={() => setUpdateUserShow(!updateUserShow)} editUser={updateUserHandler} data={editData} />
