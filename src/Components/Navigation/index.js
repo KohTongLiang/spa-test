@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 // import material ui components
 import {
@@ -13,15 +12,9 @@ import { makeStyles } from '@material-ui/core/styles';
 // import constants
 import { APP_NAME } from '../../Constants/values';
 import { STYLE } from '../../Constants/styles';
-import { ARTICLES, SIGN_IN } from '../../Constants/routes';
+import {  USER } from '../../Constants/routes';
 
 const useStyles = makeStyles((theme) => (STYLE));
-
-const mapStateToProps = state => {
-    return {
-        auth: state.AuthReducer.auth,
-    }
-}
 
 function NavigationBar(props) {
     const classes = useStyles();
@@ -58,7 +51,7 @@ function NavigationBar(props) {
                         <IconButton onClick={toggleDrawer('left', true)} edge="start" edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="p" className={classes.appbarTitle}>
+                        <Typography variant="body1" className={classes.appbarTitle}>
                             <Link to='/' className={classes.customLinkStyling}>
                                 {APP_NAME}
                             </Link>
@@ -84,23 +77,7 @@ function NavigationBar(props) {
                                             <HomeIcon />
                                         </ListItemIcon>
                                         <ListItemText>
-                                            <Link to={ ARTICLES } className={classes.customLinkStyling}>Articles</Link>
-                                        </ListItemText>
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <HomeIcon />
-                                        </ListItemIcon>
-                                        <ListItemText>
-                                            <Link to='/' className={classes.customLinkStyling}>Shop</Link>
-                                        </ListItemText>
-                                    </ListItem>
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <HomeIcon />
-                                        </ListItemIcon>
-                                        <ListItemText>
-                                            <Link to='/' className={classes.customLinkStyling}>Inventory</Link>
+                                            <Link to={USER} className={classes.customLinkStyling}>User</Link>
                                         </ListItemText>
                                     </ListItem>
                                 </List>
@@ -111,61 +88,19 @@ function NavigationBar(props) {
                     <Hidden xsDown>
                         <Typography variant="h6" style={{ flexGrow: 0.05 }}>
                             <Link to='/' className={classes.customLinkStyling}>
-                                { APP_NAME }
+                                {APP_NAME}
                             </Link>
                         </Typography>
-                        <Typography variant="h8" style={{ flexGrow: 0.05 }}>
-                            <Link to={ ARTICLES } className={classes.customLinkStyling}>
-                                Articles
-                            </Link>
-                        </Typography>
-                        <Typography variant="h8" style={{ flexGrow: 0.05 }}>
-                            <Link to='/' className={classes.customLinkStyling}>
-                                Shop
-                            </Link>
-                        </Typography>
-                        <Typography variant="h8" style={{ flexGrow: 1 }}>
-                            <Link to='/' className={classes.customLinkStyling}>
-                                Inventory
+                        <Typography variant="h6" style={{ flexGrow: 1 }}>
+                            <Link to={USER} className={classes.customLinkStyling}>
+                                User
                             </Link>
                         </Typography>
                     </Hidden>
-                    {props.auth && (
-                        <div style={{ right: 0 }}>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={handleClose}>My account</MenuItem>
-                            </Menu>
-                        </div>
-                    )}
-                    {!props.auth && <Link className={classes.customLinkStyling} to={SIGN_IN}><Button>Sign in</Button></Link>}
                 </Toolbar>
             </AppBar>
         </div>
     );
 }
 
-export default connect(mapStateToProps, null)(NavigationBar);
+export default NavigationBar;

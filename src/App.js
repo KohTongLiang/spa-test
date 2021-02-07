@@ -6,9 +6,7 @@ import { createMuiTheme, ThemeProvider, CssBaseline } from '@material-ui/core';
 // Components
 import NavigationBar from './Components/Navigation';
 import HomePage from './Components/Home';
-import ArticlePage from './Components/Article';
-import SignInPage from './Components/Auth/signin';
-import SignUpPage from './Components/Auth/signup';
+import UserPage from './Components/User';
 
 // Constants
 import * as ROUTES from './Constants/routes';
@@ -29,9 +27,7 @@ function App() {
         <Router>
           <NavigationBar />
           <Route exact path={ROUTES.HOME} component={HomePage} />
-          <Route path={ROUTES.ARTICLES} component={ArticlePage} />
-          <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+          <Route path={ROUTES.USER} component={UserPage} />
         </Router>
         <CssBaseline />
       </ThemeProvider>
